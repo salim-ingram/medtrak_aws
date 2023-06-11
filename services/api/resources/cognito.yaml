@@ -1,5 +1,5 @@
 Resources:
-  UserPool:
+  CognitoUserPool:
     Type: AWS::Cognito::UserPool
     Properties:
       UserPoolName: ${self:provider.stage}-medtrak-aws-api-pool
@@ -30,7 +30,8 @@ Resources:
           RequireSymbols: true
           RequireUppercase: true
           TemporaryPasswordValidityDays: 1
-  UserPoolClient:
+
+  CognitoUserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
       ClientName: ${self.provider.stage}-medtrak-aws-api-client

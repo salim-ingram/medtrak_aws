@@ -1,5 +1,8 @@
+# import boto3
 import pytest
 from fastapi import status
+
+# from moto import mock_cognitoidp
 from starlette.testclient import TestClient
 
 from main import app
@@ -19,3 +22,11 @@ def test_health_check(client):
     response = client.get("/api/health-check/")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {"message": "OK"}
+
+
+"""
+@pytest.fixture
+def cognito_user_pool():
+    with mock_cognitoidp():
+        client = boto3.client("cognito-idp")
+"""
