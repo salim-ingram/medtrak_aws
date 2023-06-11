@@ -34,3 +34,6 @@ custom:
 
 plugins:
   - serverless-python-requirements
+
+resources:
+  - ${file(resources/cognito.yaml)}
