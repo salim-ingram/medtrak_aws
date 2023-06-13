@@ -3,12 +3,18 @@ Resources:
     Type: AWS::Cognito::UserPool
     Properties:
       UserPoolName: ${self:provider.stage}-medtrak-aws-api-pool
+      UsernameConfiguration:
+        CaseSensitive: false
       AutoVerifiedAttributes:
         - email
       Schema:
         - Name: email
           AttributeDataType: String
           Mutable: false
+          Required: true
+        - Name: name
+          AttributeDataType: String
+          Mutable: true
           Required: true
       DeviceConfiguration:
         DeviceOnlyRememberedOnUserPrompt: true
