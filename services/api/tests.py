@@ -1,10 +1,11 @@
 import boto3
 import pytest
-from auth import UserManager
 from fastapi import status
-from main import app
 from moto import mock_cognitoidp
 from starlette.testclient import TestClient
+
+from auth import UserManager
+from main import app
 
 
 @pytest.fixture
