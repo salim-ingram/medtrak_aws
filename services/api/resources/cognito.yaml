@@ -12,7 +12,11 @@ Resources:
           AttributeDataType: String
           Mutable: false
           Required: true
-        - Name: name
+        - Name: given-name
+          AttributeDataType: String
+          Mutable: true
+          Required: true
+        - Name: family-name
           AttributeDataType: String
           Mutable: true
           Required: true

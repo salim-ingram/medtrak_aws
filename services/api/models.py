@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from uuid import UUID
 
 
 class MedicationStatus(str, Enum):
@@ -20,9 +21,14 @@ class Medication:
         return cls(id_, name, quantity, dose, MedicationStatus.NULL)
 
 
-"""
 @dataclass
 class User:
     id: str
-    name:
-"""
+    username: UUID
+    email: str
+    given_name: str
+    family_name: str
+
+    @classmethod
+    def sign_up(cls, username, password, email, given_name, family_name):
+        return cls(username, password, email, given_name, family_name)
