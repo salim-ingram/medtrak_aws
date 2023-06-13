@@ -18,3 +18,11 @@ class Medication:
     @classmethod
     def create(cls, id_, name, quantity, dose):
         return cls(id_, name, quantity, dose, MedicationStatus.NULL)
+
+
+"""
+@dataclass
+class User:
+    id: str
+    name:
+"""
