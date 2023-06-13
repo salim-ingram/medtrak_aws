@@ -1,8 +1,10 @@
+import boto3
 import pytest
 from fastapi import status
-from starlette.testclient import TestClient
-
 from main import app
+from models import User
+from moto import mock_cognitoidp
+from starlette.testclient import TestClient
 
 
 @pytest.fixture
@@ -21,9 +23,13 @@ def test_health_check(client):
     assert response.json() == {"message": "OK"}
 
 
-"""
 @pytest.fixture
 def cognito_user_pool():
     with mock_cognitoidp():
         client = boto3.client("cognito-idp")
-"""
+        user_pool = client.create_user_pool(PoolName="TestUserPool")["UserPool"]
+
+        app_client = client.create_user_pool_client(
+            UserPoolId=user_pool["Id"],
+            ClientName="TestAppClient",
+        )
