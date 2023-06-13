@@ -5,6 +5,8 @@ Resources:
       UserPoolName: ${self:provider.stage}-medtrak-aws-api-pool
       UsernameConfiguration:
         CaseSensitive: false
+      UsernameAttributes:
+        - email
       AutoVerifiedAttributes:
         - email
       Schema:
@@ -12,11 +14,11 @@ Resources:
           AttributeDataType: String
           Mutable: false
           Required: true
-        - Name: given-name
+        - Name: "given_name"
           AttributeDataType: String
           Mutable: true
           Required: true
-        - Name: family-name
+        - Name: "family_name"
           AttributeDataType: String
           Mutable: true
           Required: true
