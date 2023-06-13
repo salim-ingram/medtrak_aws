@@ -20,7 +20,7 @@ Resources:
         DeviceOnlyRememberedOnUserPrompt: true
       Policies:
         PasswordPolicy:
-          MinimumLength: 6
+          MinimumLength: 7
           RequireLowercase: true
           RequireNumbers: true
           RequireSymbols: true
