@@ -2,9 +2,9 @@ import boto3
 
 
 class UserManager:
-    def __init__(self, client_id, user_pool_id):
-        self.client_id = client_id
-        self.user_pool_id = user_pool_id
+    def __init__(self, user_pool, user_client):
+        self.user_pool = user_pool
+        self.user_client = user_client
 
     def sign_up(
         self,
@@ -14,9 +14,9 @@ class UserManager:
         given_name,
         family_name,
     ):
-        cognito_client = boto3.resource("cognito-idp")
+        cognito_client = boto3.client("cognito-idp")
         cognito_client.sign_up(
-            ClientId=self.client_id,
+            ClientId=self.user_client["UserPoolClient"]["ClientId"],
             Username=username,
             Password=password,
             UserAttributes=[
@@ -26,8 +26,10 @@ class UserManager:
             ],
         )
 
-    """
-    def authenticate(self, username, password):
-        cognito_client = boto3.resources("cognito-idp")
-        access_token = cognito_client.admin_initiate_auth
-    """
+    def get_user_admin(self, username):
+        cognito_client = boto3.client("cognito-idp")
+        user = cognito_client.admin_get_user(
+            UserPoolId=self.user_pool["Id"],
+            Username=username,
+        )
+        return user

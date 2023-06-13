@@ -28,7 +28,3 @@ class User:
     email: str
     given_name: str
     family_name: str
-
-    @classmethod
-    def sign_up(cls, username, password, email, given_name, family_name):
-        return cls(username, password, email, given_name, family_name)
